@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Undercover Tourist</title>
+  </head>
+  <body>
+    <h1>Undercover Tourist - Products</h1>
+
+    {% templatetag openblock %} if request.is_authenticated {% templatetag closeblock %}
+      <p>Hi {% templatetag openvariable %} request.user {% templatetag closevariable %}</p>
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+
+    <form action="{% url 'home' %}">
+      {% templatetag openblock %} csrf_token {% templatetag closeblock %}
+
+      {% for product in products %}
+        <h4>{{ product.name }}</h4>
+        <input type="text" name="{{ product.id }}">
+      {% endfor %}
+
+      <p>
+        <button type="submit">Add to Cart</button>
+      </p>
+    </form>
+  </body>
+</html>
